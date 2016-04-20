@@ -6,28 +6,21 @@ var fs = require('fs');
 
 var totalSize = 523530;
 
-function getSumOfSizes() {
-  return new Promise(function(res, rej) {
+function getSumOfSizes(callback) {
     require('du')(__dirname + '/storage', function (err, size) {
-      res(size);
+      callback(size)
     })
-
-  });
-
 }
 
-function getFileNames(dirname) {
-  return new Promise(function(res, rej) {
+function getFileNames(dirname, callback) {
     fs.readdir(dirname, function(err, filenames) {
       if (err) {
 
-        rej(err)
         return;
       }
 
-      res(filenames);
+      callback(filenames);
     });
-  });
 
 }
 app.use(express.static('public'));
@@ -45,23 +38,19 @@ app.post('/api/upload', multipartMiddleware, function(req, res) {
 });
 
 app.get('/api/capacity', function(req, res) {
-  getSumOfSizes().then(function(size){
+  getSumOfSizes(function(size){
     res.json({
       size: size,
       total: totalSize
     })
-  });
-
+  })
 });
 
 
 app.get('/api/files', function(req, res) {
-  getFileNames(__dirname + '/storage').then(function(result){
+  getFileNames(__dirname + '/storage', function(result) {
     res.json(result)
   })
-  .catch(function(err){
-    res.json(err);
-  });
 
 });
 
