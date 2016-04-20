@@ -1,14 +1,17 @@
 {
-  "name": "basic-resin-node-project",
+  "name": "sample-express-resin-server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "preinstall": "bash deps.sh",
-    "start": "node hello.js"
+    "start": "node server.js"
   },
-  "author": "Lorenzo Stoakes <lstoakes@gmail.com>",
+  "author": "Wojciech Adaszyński <wojciech.adaszynski@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "connect-multiparty": "^2.0.0",
+    "du": "^0.1.0",
+    "express": "^4.13.4"
   }
 }
