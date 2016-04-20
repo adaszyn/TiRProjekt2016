@@ -7,7 +7,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-<title>Red Ui Kit a Ui Kits Category Flat Bootstrap Responsive Website Template | Home :: w3layouts</title>
+<title>HOME RPi Server</title>
 <!-- for-mobile-apps -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -32,12 +32,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- ui-kit -->
 		<div class="ui-kit">
 			<div class="container">
-				<h1><i class="glyphicon glyphicon-home" aria-hidden="true"></i>Home<span>RPi</span>Server</h1>
+				<h1><img src="/images/raspberry.png">Home<span style="color: #52FF52">RPi</span>Server</h1>
 				<div class="ui-kit-grids">
 					<div class="col-md-6 ui-kit-grid-left">
 						<div class="login-form">
 							<form>
-								<input type="text" value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" required="">
 								<br />
 								<div class="clearfix"> </div>
 
@@ -49,47 +48,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 						</div>
 
-
-
-						<form action="" class="sky-form">
-							<section>
-								<div class="row">
-									<div class="colr ert">
-										<label class="radio"><input type="radio" name="radio" checked=""><i></i>Design</label>
-									</div>
-									<div class="colr">
-										<label class="radio"><input type="radio" name="radio"><i></i>Development</label>
-									</div>
-									<div class="colr">
-										<label class="radio"><input type="radio" name="radio"><i></i>Content Management</label>
-									</div>
-								</div>
-							</section>
-						</form>
 					</div>
 					<div class="col-md-6 ui-kit-grid-right">
 
 						<div class="upload">
 							<div class="diagram">
 								<canvas id="doughnut" height="300" width="300"></canvas>
-								<h4>0%</h4>
+								<h4 id="totalSizeValue">0%</h4>
 							</div>
 						</div>
-							<script type="text/javascript" src="js/Chart.js"></script>
+							<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js"></script>
+							<!-- <script type="text/javascript" src="js/Chart.min.js"></script> -->
 							<script>
-								var doughnutData = [
-										{
-											value: 100,
-											color:"#f3a1a1"
-										},
-										{
-											value : 0,
-											color : "#fff"
-										}
 
-									];
-
-								new Chart(document.getElementById("doughnut").getContext("2d")).Doughnut(doughnutData);
 							</script>
 
 

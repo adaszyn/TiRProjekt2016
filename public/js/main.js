@@ -4,7 +4,6 @@ var $uploadFileButton = $('#uploadFileButton');
 var $submitButton = $('#submitButton');
 var myfile = null;
 
-console.log($fileInput)
 $uploadFileButton.on('click', function(event) {
     event.preventDefault();
     $fileInput.trigger('click');
@@ -13,7 +12,6 @@ $uploadFileButton.on('click', function(event) {
 $submitButton.click(function(event) {
     event.preventDefault();
     var file = fileInput.files[0];
-    console.log(file);
     var data = new FormData();
     $.each(fileInput.files, function(key, value) {
         data.append(key, value);
@@ -29,22 +27,41 @@ $submitButton.click(function(event) {
         success: function(data, textStatus, jqXHR) {
             if (typeof data.error === 'undefined') {
                 // Success so call function to process the form
-                submitForm(event, data);
+                refershView();
             } else {
                 // Handle errors here
-                console.log('ERRORS: ' + data.error);
             }
         },
         error: function(jqXHR, textStatus, errorThrown) {
             // Handle errors here
-            console.log('ERRORS: ' + textStatus);
             // STOP LOADING SPINNER
         }
     });
 });
+var doughnutData = [
+    {
+      value: 0,
+      color:"#f3a1a1"
+    },
+    {
+      value : 0,
+      color : "#fff"
+    }
 
-setTimeout(function() {
-    $.get("/api/upload", function(data) {
-      console.log(data)
-    });
-}, 1000);
+  ];
+
+// var chart = new Chart(document.getElementById("doughnut").getContext("2d")).Doughnut(doughnutData);
+var ctx = document.getElementById("doughnut").getContext("2d");
+var chart= new Chart(ctx).Doughnut(doughnutData, {showTooltips: false});
+function refershView() {
+  setTimeout(function() {
+      $.get("/api/capacity", function(data) {
+        doughnutData[1].value = Math.floor(data.size *100/ data.total);
+        doughnutData[0].value = 100 -Math.floor(data.size *100/ data.total);
+
+        document.getElementById('totalSizeValue').innerHTML = String(Math.floor(data.size *100/ data.total)) + '%';
+        chart= new Chart(ctx).Doughnut(doughnutData, {showTooltips: false});
+      });
+  }, 1000);
+}
+refershView();
