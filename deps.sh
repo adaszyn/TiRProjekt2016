@@ -8,4 +8,8 @@ apt-get install -y cowsay
 apt-get install -y nodejs
 apt-get install -y npm
 
+npm cache clean -f
+npm install -g n
+n stable
+
 /usr/games/cowsay "Install dependencies using a script like this!"
