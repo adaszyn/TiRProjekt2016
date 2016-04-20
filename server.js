@@ -56,9 +56,10 @@ app.get('/api/files', function(req, res) {
 
 
 
-
-
-
 app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
-});
+  console.log('Private app listening on port 3000!');
+}).on('error', function(err) { console.log('Silently quiting, error on private instance')});
+
+app.listen(80, function () {
+  console.log('Public app listening on port 3000!');
+}).on('error', function(err) { console.log('Silently quiting, error on public instance')});
